@@ -32,7 +32,7 @@
     "coverall": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "keywords": [
-      "selenium,webdriver,chrome,plugin,private,proxy,username,password"
+    "selenium,webdriver,chrome,plugin,private,proxy,username,password"
   ],
   "author": "Alexander <alykoshin@gmail.com>",
   "license": "MIT",
@@ -45,18 +45,21 @@
   },
   "homepage": "https://github.com/alykoshin/selenium-chrome-proxy-plugin",
   "dependencies": {
-    "minimist": "^1.2.0"
+    "archiver": "^2.1.0",
+    "mkdirp": "^0.5.1",
+    "selenium-webdriver": "^3.6.0",
+    "uuid": "^3.1.0"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
+    "chai": "^4.1.2",
     "chai-things": "^0.2.0",
-    "coveralls": "^2.12.0",
-    "eslint": "^3.18.0",
+    "coveralls": "^3.0.0",
+    "eslint": "^4.9.0",
     "istanbul": "^0.4.5",
-    "jshint": "^2.9.4",
-    "jsinspect": "^0.12.2",
-    "mocha": "^3.2.0",
-    "mockery": "^2.0.0",
-    "sinon": "^2.1.0"
+    "jshint": "^2.9.5",
+    "jsinspect": "^0.12.7",
+    "mocha": "^4.0.1",
+    "mockery": "^2.1.0",
+    "sinon": "^4.0.2"
   }
 }

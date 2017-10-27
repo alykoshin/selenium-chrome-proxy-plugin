@@ -1,0 +1,11 @@
+{
+  "name": "selenium-chrome-proxy-plugin-example",
+  "version": "0.0.0",
+  "description": "Example for Chrome plugin generator for setting private proxies to use with Selenium",
+  "main": "./index.js",
+  "author": "Alexander <alykoshin@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "selenium-webdriver": "^3.6.0"
+  }
+}
