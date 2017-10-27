@@ -39,5 +39,4 @@ function startWithProxy(config) {
 }
 
 
-startWithProxy({ host: '23.81.218.218', port: '29842', username: 'raggar', password: 'qh4QYrtT' });
-startWithProxy({ host: '23.106.75.41',  port: '29842', username: 'raggar', password: 'qh4QYrtT' });
+startWithProxy({ host: '<proxy_host>', port: '<proxy_port>', username: '<proxy_username>', password: '<proxy_password>' });
