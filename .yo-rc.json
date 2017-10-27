@@ -1,0 +1,17 @@
+{
+  "generator-mini-package": {
+    "promptValues": {
+      "pkgDesc": "Chrome plugin generator for setting private proxies",
+      "keywords": [
+        "selenium",
+        "webdriver",
+        "chrome",
+        "plugin",
+        "private",
+        "proxy",
+        "username",
+        "password"
+      ]
+    }
+  }
+}
