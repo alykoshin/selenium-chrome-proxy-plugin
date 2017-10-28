@@ -46,7 +46,23 @@ Please, do not forget to call `plugin.cleanpu()` to remove temporary files.
     ...
     tempDir:  './temp' 
   };
-  const plugin = new ProxyPlugin(config, chromeOptions);
+  const plugin = new ProxyPlugin(config, chromeOptions, (err, plugin) => {
+    console.log('PLUGIN READY');
+
+    const driver = new webdriver.Builder()
+      .forBrowser('chrome')
+      .setChromeOptions(chromeOptions)
+      .build()
+    ;
+
+    driver.get('http://whatismyip.host/')
+      .then(_ => {
+        plugin.cleanup();
+        console.log('DONE');
+      })
+    ;
+
+  });
 ```
 
 
