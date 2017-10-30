@@ -43,26 +43,36 @@ Please, do not forget to call `plugin.cleanpu()` to remove temporary files.
 
 ```js
   const config = {
-    ...
+    host: '<proxy_host>',
+    port: '<proxy_port>', 
+    username: '<proxy_username>', 
+    password: '<proxy_password>',
     tempDir:  './temp' 
   };
-  const plugin = new ProxyPlugin(config, chromeOptions, (err, plugin) => {
-    console.log('PLUGIN READY');
-
-    const driver = new webdriver.Builder()
-      .forBrowser('chrome')
-      .setChromeOptions(chromeOptions)
-      .build()
+  return new ProxyPlugin({ proxyConfig: config })
+    .then((plugin) => {
+      console.log('PLUGIN READY');
+      const driver = new webdriver.Builder()
+        .forBrowser('chrome')
+        .setChromeOptions(plugin.options)
+        .build()
+      ;
+      return driver.get('http://whatismyip.host/')
+        .then(_ => {
+          plugin.cleanup();
+          console.log('DONE');
+        })
+        ;
+    })
+    .catch((err) => console.log('ERROR:', err))
     ;
+```
 
-    driver.get('http://whatismyip.host/')
-      .then(_ => {
-        plugin.cleanup();
-        console.log('DONE');
-      })
-    ;
-
-  });
+It is also possible to provide `chromeOptions`:
+```js 
+  return new ProxyPlugin({ proxyConfig: config, options: chromeOptions })
+    .then((plugin) => {
+    ...
 ```
 
 

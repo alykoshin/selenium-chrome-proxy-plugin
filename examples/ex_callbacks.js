@@ -10,15 +10,15 @@ const ProxyPlugin = require('../');
 
 
 function startWithProxy(config) {
-  const chrome        = require('selenium-webdriver/chrome');
-  const chromeOptions = new chrome.Options();
+  //const chrome        = require('selenium-webdriver/chrome');
+  //const chromeOptions = new chrome.Options();
 
-  const plugin = new ProxyPlugin(config, chromeOptions, (err, plugin) => {
+  const plugin = new ProxyPlugin({ proxyConfig: config }, (err, plugin) => {
     console.log('PLUGIN READY');
 
     const driver = new webdriver.Builder()
       .forBrowser('chrome')
-      .setChromeOptions(chromeOptions)
+      .setChromeOptions(plugin.options)
       .build()
     ;
 
@@ -33,4 +33,12 @@ function startWithProxy(config) {
 
 }
 
-module.exports = startWithProxy;
+const proxies = require('./credentials.json');
+const proxy0 = proxies[0];
+
+startWithProxy({
+  host: proxy0.host,         // proxy host
+  port: proxy0.port,         // proxy port
+  username: proxy0.username, // proxy username
+  password: proxy0.password, // proxy password
+});
