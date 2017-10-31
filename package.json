@@ -1,6 +1,6 @@
 {
   "name": "selenium-chrome-proxy-plugin",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Chrome plugin generator for setting private proxies",
   "main": "./index.js",
   "engines": {
