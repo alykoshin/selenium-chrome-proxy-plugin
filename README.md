@@ -59,12 +59,11 @@ Please, do not forget to call `plugin.cleanpu()` to remove temporary files.
         .forBrowser('chrome')
         .setChromeOptions(plugin.chromeOptions)
         .build()
-        .then((driver) => {
-          return plugin.cleanup()
+        .then((driver) =>
+          plugin.cleanup()
             .then(() => driver.get('http://whatismyip.host/'))
             .then(() => console.log('DONE'))
-          ;
-        })
+        )
         ;
     })
     .catch((err) => console.log('ERROR:', err))
