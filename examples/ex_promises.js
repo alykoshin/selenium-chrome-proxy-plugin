@@ -19,14 +19,16 @@ function startWithProxy(config) {
   })
     .then((plugin) => {
       console.log('PLUGIN READY');
-      const driver = new webdriver.Builder()
+      return new webdriver.Builder()
         .forBrowser('chrome')
         .setChromeOptions(plugin.chromeOptions)
         .build()
-      ;
-      return driver.get('http://whatismyip.host/')
-        .then(_ => plugin.cleanup())
-        .then(_ => console.log('DONE'))
+        .then((driver) => {
+          plugin.cleanup()
+            .then(() => driver.get('http://whatismyip.host/'))
+            .then(() => console.log('DONE'))
+          ;
+        })
         ;
     })
     .catch((err) => console.log('ERROR:', err))

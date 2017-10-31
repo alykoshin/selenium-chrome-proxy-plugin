@@ -42,7 +42,7 @@ Temp directory may be changed by providing `tempDir` property in config:
 Please, do not forget to call `plugin.cleanpu()` to remove temporary files.
 
 ```js
-  const config = {
+  const proxyConfig = {
     host: '<proxy_host>',
     port: '<proxy_port>', 
     username: '<proxy_username>', 
@@ -50,20 +50,20 @@ Please, do not forget to call `plugin.cleanpu()` to remove temporary files.
     tempDir:  './temp' 
   };
   return new ProxyPlugin({
-    proxyConfig: config
+    proxyConfig: proxyConfig
     //chromeOptions: chromeOptions,
   })
     .then((plugin) => {
       console.log('PLUGIN READY');
-      const driver = new webdriver.Builder()
+      return new webdriver.Builder()
         .forBrowser('chrome')
         .setChromeOptions(plugin.chromeOptions)
         .build()
-      ;
-      return driver.get('http://whatismyip.host/')
-        .then(_ => {
-          plugin.cleanup();
-          console.log('DONE');
+        .then((driver) => {
+          plugin.cleanup()
+            .then(() => driver.get('http://whatismyip.host/'))
+            .then(() => console.log('DONE'))
+          ;
         })
         ;
     })
@@ -72,23 +72,24 @@ Please, do not forget to call `plugin.cleanpu()` to remove temporary files.
 ```
 
 It is also possible to provide `chromeOptions`:
+
 ```js 
-  return new ProxyPlugin({ proxyConfig: config, options: chromeOptions })
-    .then((plugin) => {
-    ...
+return new ProxyPlugin({ proxyConfig: config, options: chromeOptions })
+  .then((plugin) => {
+  ...
 ```
 
 May be used with callbacks:
 
 ```js
  return new ProxyPlugin({
-    proxyConfig: config,
+    proxyConfig: proxyConfig,
     //chromeOptions: chromeOptions,
   }, (err, plugin) => {
   
     ...
     
-  }
+  });
 ```
 
 More info along with working examples may be found in `examples` subdirectory.

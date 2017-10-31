@@ -19,21 +19,18 @@ function startWithProxy(config) {
   }, (err, plugin) => {
     console.log('PLUGIN READY');
 
-    const driver = new webdriver.Builder()
+    return new webdriver.Builder()
       .forBrowser('chrome')
       .setChromeOptions(plugin.chromeOptions)
       .build()
-    ;
-
-    driver.get('http://whatismyip.host/')
-      .then(_ => {
-        plugin.cleanup();
-        console.log('DONE');
+      .then((driver) => {
+        plugin.cleanup()
+          .then(() => driver.get('http://whatismyip.host/'))
+          .then(() => console.log('DONE'))
+        ;
       })
-    ;
-
+      ;
   });
-
 }
 
 const proxies = require('./credentials.json');
