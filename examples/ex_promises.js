@@ -24,7 +24,7 @@ function startWithProxy(config) {
         .setChromeOptions(plugin.chromeOptions)
         .build()
         .then((driver) => {
-          plugin.cleanup()
+          return plugin.cleanup()
             .then(() => driver.get('http://whatismyip.host/'))
             .then(() => console.log('DONE'))
           ;
