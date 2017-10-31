@@ -25,10 +25,8 @@ function startWithProxy(config) {
         .build()
       ;
       return driver.get('http://whatismyip.host/')
-        .then(_ => {
-          plugin.cleanup();
-          console.log('DONE');
-        })
+        .then(_ => plugin.cleanup())
+        .then(_ => console.log('DONE'))
         ;
     })
     .catch((err) => console.log('ERROR:', err))
