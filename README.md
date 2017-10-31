@@ -49,12 +49,15 @@ Please, do not forget to call `plugin.cleanpu()` to remove temporary files.
     password: '<proxy_password>',
     tempDir:  './temp' 
   };
-  return new ProxyPlugin({ proxyConfig: config })
+  return new ProxyPlugin({
+    proxyConfig: config
+    //chromeOptions: chromeOptions,
+  })
     .then((plugin) => {
       console.log('PLUGIN READY');
       const driver = new webdriver.Builder()
         .forBrowser('chrome')
-        .setChromeOptions(plugin.options)
+        .setChromeOptions(plugin.chromeOptions)
         .build()
       ;
       return driver.get('http://whatismyip.host/')
@@ -74,6 +77,21 @@ It is also possible to provide `chromeOptions`:
     .then((plugin) => {
     ...
 ```
+
+May be used with callbacks:
+
+```js
+ return new ProxyPlugin({
+    proxyConfig: config,
+    //chromeOptions: chromeOptions,
+  }, (err, plugin) => {
+  
+    ...
+    
+  }
+```
+
+More info along with working examples may be found in `examples` subdirectory.
 
 
 ## Credits

@@ -13,13 +13,15 @@ function startWithProxy(config) {
   //const chrome        = require('selenium-webdriver/chrome');
   //const chromeOptions = new chrome.Options();
 
-  //let plugin;
-  return new ProxyPlugin({ proxyConfig: config })
+  return new ProxyPlugin({
+    proxyConfig: config
+    //chromeOptions: chromeOptions,
+  })
     .then((plugin) => {
       console.log('PLUGIN READY');
       const driver = new webdriver.Builder()
         .forBrowser('chrome')
-        .setChromeOptions(plugin.options)
+        .setChromeOptions(plugin.chromeOptions)
         .build()
       ;
       return driver.get('http://whatismyip.host/')
