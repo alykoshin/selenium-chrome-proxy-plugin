@@ -45,7 +45,7 @@
   },
   "homepage": "https://github.com/alykoshin/selenium-chrome-proxy-plugin",
   "dependencies": {
-    "archiver": "^2.1.0",
+    "archiver": "^7.0.0",
     "debug": "^3.1.0",
     "mkdirp": "^0.5.1",
     "selenium-webdriver": "^3.6.0",
