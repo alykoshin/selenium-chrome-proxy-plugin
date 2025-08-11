@@ -6,6 +6,6 @@
   "author": "Alexander <alykoshin@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "selenium-webdriver": "^3.6.0"
+    "selenium-webdriver": "^4.0.0"
   }
 }
